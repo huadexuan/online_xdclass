@@ -28,13 +28,14 @@ public class UserController {
     }
 
 
+    @PostMapping("/login")
     public JsonData login(@RequestBody LoginRequest loginRequest){
         User user = userService.findByPhoneAndPwd(loginRequest.getPhone(), loginRequest.getPwd());
         if (user == null) {
-            return null;
+            return JsonData.buildError("登陆失败");
         }else {
             String token = JWTUtils.geneJsonWebToken(user);
-            return JsonData.buildSucces(user);
+            return JsonData.buildSucces(token);
         }
     }
 

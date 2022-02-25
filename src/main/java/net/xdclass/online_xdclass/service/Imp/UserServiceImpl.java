@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByPhoneAndPwd(String phone, String pwd) {
-        return userMapper.findByPhoneAndPwd(phone,pwd);
+        return userMapper.findByPhoneAndPwd(phone,CommonUtils.MD5(pwd));
     }
 
     private static final String [] headImg = {

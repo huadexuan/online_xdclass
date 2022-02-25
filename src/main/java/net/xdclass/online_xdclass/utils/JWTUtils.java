@@ -27,6 +27,11 @@ public class JWTUtils {
         return token;
     }
 
+    /**
+     * @des:登陆状态还在就返回Claims,不在返回null
+     * @param
+     * @return
+     */
     public static Claims checkJWT(String token){
         try{
             final Claims claims = Jwts.parser().setSigningKey(SECRET).parseClaimsJws(token).getBody();
